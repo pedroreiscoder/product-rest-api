@@ -9,6 +9,7 @@ func Router() *mux.Router {
 	router := mux.NewRouter()
 
 	router.HandleFunc("/api/products", controllers.GetProducts).Methods("GET")
+	router.HandleFunc("/api/product/{id}", controllers.GetProduct).Methods("GET")
 
 	return router
 }

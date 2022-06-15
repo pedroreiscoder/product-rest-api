@@ -27,3 +27,17 @@ func GetProducts() ([]models.Product, error) {
 
 	return products, nil
 }
+
+func GetProduct(id uint64) (models.Product, error) {
+	row := db.QueryRow("select name, price from products where id=$1", id)
+
+	product := models.Product{ID: id}
+
+	err := row.Scan(&product.Name, &product.Price)
+
+	if err != nil {
+		return models.Product{}, err
+	}
+
+	return product, nil
+}
