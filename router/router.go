@@ -10,6 +10,7 @@ func Router() *mux.Router {
 
 	router.HandleFunc("/api/products", controllers.GetProducts).Methods("GET")
 	router.HandleFunc("/api/product/{id}", controllers.GetProduct).Methods("GET")
+	router.HandleFunc("/api/product", controllers.CreateProduct).Methods("POST")
 
 	return router
 }
