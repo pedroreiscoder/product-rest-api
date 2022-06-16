@@ -59,3 +59,9 @@ func UpdateProduct(product models.Product) error {
 
 	return err
 }
+
+func DeleteProduct(id uint64) error {
+	_, err := db.Exec("delete from products where id=$1", id)
+
+	return err
+}
