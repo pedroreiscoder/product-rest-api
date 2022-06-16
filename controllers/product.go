@@ -76,3 +76,38 @@ func CreateProduct(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(product)
 }
+
+func UpdateProduct(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	params := mux.Vars(r)
+	id, err := strconv.ParseUint(params["id"], 10, 64)
+
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write([]byte("Invalid product ID"))
+		return
+	}
+
+	var product models.Product
+
+	err = json.NewDecoder(r.Body).Decode(&product)
+
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write([]byte("Invalid product"))
+		return
+	}
+
+	product.ID = id
+
+	err = data.UpdateProduct(product)
+
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte(err.Error()))
+		return
+	}
+
+	w.WriteHeader(http.StatusNoContent)
+}

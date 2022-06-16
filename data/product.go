@@ -52,3 +52,10 @@ func CreateProduct(product *models.Product) (models.Product, error) {
 
 	return *product, nil
 }
+
+func UpdateProduct(product models.Product) error {
+	_, err := db.Exec("update products set name=$1, price=$2 where id=$3",
+		product.Name, product.Price, product.ID)
+
+	return err
+}
