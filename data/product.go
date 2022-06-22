@@ -42,15 +42,11 @@ func GetProduct(id uint64) (models.Product, error) {
 	return product, nil
 }
 
-func CreateProduct(product *models.Product) (models.Product, error) {
+func CreateProduct(product *models.Product) error {
 	err := db.QueryRow("insert into products (name, price) values ($1, $2) returning id",
 		product.Name, product.Price).Scan(&product.ID)
 
-	if err != nil {
-		return models.Product{}, err
-	}
-
-	return *product, nil
+	return err
 }
 
 func UpdateProduct(product models.Product) error {

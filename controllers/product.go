@@ -65,7 +65,7 @@ func CreateProduct(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	product, err = data.CreateProduct(&product)
+	err = data.CreateProduct(&product)
 
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
