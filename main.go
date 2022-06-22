@@ -10,6 +10,6 @@ import (
 
 func main() {
 	data.Init()
-	r := router.Router()
+	r := router.New()
 	log.Fatal(http.ListenAndServe(":3200", r))
 }
