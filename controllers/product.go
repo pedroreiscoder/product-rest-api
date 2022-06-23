@@ -90,7 +90,6 @@ func UpdateProduct(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var product models.Product
-
 	err = json.NewDecoder(r.Body).Decode(&product)
 
 	if err != nil {
@@ -99,13 +98,17 @@ func UpdateProduct(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	product.ID = id
-
-	err = data.UpdateProduct(product)
+	rowsAffected, err := data.UpdateProduct(id, product)
 
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte(err.Error()))
+		return
+	}
+
+	if rowsAffected == 0 {
+		w.WriteHeader(http.StatusNotFound)
+		w.Write([]byte("Product not found"))
 		return
 	}
 

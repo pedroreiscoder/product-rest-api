@@ -49,11 +49,15 @@ func CreateProduct(product *models.Product) error {
 	return err
 }
 
-func UpdateProduct(product models.Product) error {
-	_, err := db.Exec("update products set name=$1, price=$2 where id=$3",
-		product.Name, product.Price, product.ID)
+func UpdateProduct(id uint64, product models.Product) (int64, error) {
+	result, err := db.Exec("update products set name=$1, price=$2 where id=$3",
+		product.Name, product.Price, id)
 
-	return err
+	if err != nil {
+		return 0, err
+	}
+
+	return result.RowsAffected()
 }
 
 func DeleteProduct(id uint64) error {
