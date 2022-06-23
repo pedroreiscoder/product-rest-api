@@ -127,11 +127,17 @@ func DeleteProduct(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = data.DeleteProduct(id)
+	rowsAffected, err := data.DeleteProduct(id)
 
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte(err.Error()))
+		return
+	}
+
+	if rowsAffected == 0 {
+		w.WriteHeader(http.StatusNotFound)
+		w.Write([]byte("Product not found"))
 		return
 	}
 

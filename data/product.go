@@ -60,8 +60,12 @@ func UpdateProduct(id uint64, product models.Product) (int64, error) {
 	return result.RowsAffected()
 }
 
-func DeleteProduct(id uint64) error {
-	_, err := db.Exec("delete from products where id=$1", id)
+func DeleteProduct(id uint64) (int64, error) {
+	result, err := db.Exec("delete from products where id=$1", id)
 
-	return err
+	if err != nil {
+		return 0, err
+	}
+
+	return result.RowsAffected()
 }
