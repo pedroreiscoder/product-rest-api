@@ -3,4 +3,5 @@ REST API developed using Go, PostgreSQL and Gorilla Mux that allows a user to cr
 
 ## Requirements
 Go v1.18+
+
 PostgreSQL v14.4+
