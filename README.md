@@ -21,7 +21,7 @@ go run main.go
 ## How to Use
 `GET /api/products` Returns a list of products  
 
-**Response example:**
+**Response:**
 ```
 [
     {
@@ -39,11 +39,45 @@ go run main.go
 
 `GET /api/product/{id}` Returns the product with the specified id  
 
-**Response example:**
+**Response:**
 ```
 {
     "id": 1,
     "name": "Cup",
     "price": 5.35
 }
+```
+
+`POST /api/product` Creates a new product and returns the created product
+
+**Request body:**
+```
+{
+    "name": "Shoe",
+    "price": 25.99
+}
+```
+
+**Response:**
+```
+{
+    "id": 3,
+    "name": "Shoe",
+    "price": 25.99
+}
+```
+
+`PUT /api/product/{id}` Updates an existing product
+
+**Request body:**
+```
+{
+    "name": "New Cup",
+    "price": 10.70
+}
+```
+
+**Response:**
+```
+204 No Content
 ```
