@@ -6,3 +6,14 @@ Go v1.18+
 PostgreSQL v14.4+
 
 ## Installation
+After cloning the repository, in the root directory run the following command:
+```go
+go get .
+```
+
+Go to the `db.go` file inside the data folder and replace the connection information with the settings of your Postgres instance  
+
+In the root directory run the command:
+```go
+go run main.go
+```
