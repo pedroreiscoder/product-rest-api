@@ -48,7 +48,7 @@ go run main.go
 }
 ```
 
-`POST /api/product` Creates a new product and returns the created product
+`POST /api/product` Creates a new product and returns the created product  
 
 **Request body:**
 ```
@@ -67,7 +67,7 @@ go run main.go
 }
 ```
 
-`PUT /api/product/{id}` Updates an existing product
+`PUT /api/product/{id}` Updates an existing product  
 
 **Request body:**
 ```
@@ -76,6 +76,13 @@ go run main.go
     "price": 10.70
 }
 ```
+
+**Response:**
+```
+204 No Content
+```
+
+`DELETE /api/product/{id}` Deletes an existing product  
 
 **Response:**
 ```
