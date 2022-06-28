@@ -17,3 +17,33 @@ In the root directory run the command:
 ```go
 go run main.go
 ```
+
+## How to Use
+`GET /api/products` Returns a list of products  
+
+**Response example:**
+```
+[
+    {
+        "id": 1,
+        "name": "Cup",
+        "price": 5.35
+    },
+    {
+        "id": 2,
+        "name": "Baseball Hat",
+        "price": 42.54
+    }
+]
+```
+
+`GET /api/product/{id}` Returns the product with the specified id  
+
+**Response example:**
+```
+{
+    "id": 1,
+    "name": "Cup",
+    "price": 5.35
+}
+```
