@@ -67,7 +67,7 @@ go run main.go
 }
 ```
 
-`PUT /api/product/{id}` Updates an existing product  
+`PUT /api/product/{id}` Updates the product with the specified id  
 
 **Request body:**
 ```
@@ -82,7 +82,7 @@ go run main.go
 204 No Content
 ```
 
-`DELETE /api/product/{id}` Deletes an existing product  
+`DELETE /api/product/{id}` Deletes the product with the specified id  
 
 **Response:**
 ```
