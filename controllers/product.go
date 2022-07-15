@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/go-playground/validator/v10"
 	"github.com/gorilla/mux"
 	"github.com/pedroreiscoder/product-rest-api/data"
 	"github.com/pedroreiscoder/product-rest-api/models"
@@ -65,6 +66,15 @@ func CreateProduct(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	validate := validator.New()
+	err = validate.Struct(product)
+
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write([]byte("Invalid product"))
+		return
+	}
+
 	err = data.CreateProduct(&product)
 
 	if err != nil {
@@ -91,6 +101,15 @@ func UpdateProduct(w http.ResponseWriter, r *http.Request) {
 
 	var product models.Product
 	err = json.NewDecoder(r.Body).Decode(&product)
+
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write([]byte("Invalid product"))
+		return
+	}
+
+	validate := validator.New()
+	err = validate.Struct(product)
 
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
